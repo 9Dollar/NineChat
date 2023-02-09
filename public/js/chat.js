@@ -76,8 +76,7 @@ socket.on("chatting", (data) => {
     chatlist.appendChild(li);
     return;
   }
-  const item = new LiModel(name, msg, time);
-  item.makeLi();
+  LiModel(name, msg, time).makeLi();
   displayContainer.scrollTo(0, displayContainer.scrollHeight);
   console.log(data);
 });
