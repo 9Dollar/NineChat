@@ -31,15 +31,12 @@ io.on("connection", (socket) => {
     Logging(param.name, param.msg, param.time);
   });
 });
+
 function Logging(name, msg, time) {
   const log = { name, msg, time };
   chatLog.push(log);
   fs.writeFileSync("./data/log.json", JSON.stringify(chatLog, null, 2));
 }
-
-app.get("/log", async (req, res) => {
-  res.send(JSON.stringify(chatLog, null, 2));
-});
 
 server.listen(PORT, () => {
   console.log(`server is running ${PORT}`);
