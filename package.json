@@ -1,0 +1,27 @@
+{
+  "name": "ninechat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9Dollar/NineChat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/9Dollar/NineChat/issues"
+  },
+  "homepage": "https://github.com/9Dollar/NineChat#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "socket.io": "^4.6.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.1"
+  }
+}

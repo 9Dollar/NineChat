@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210313/pngtree-colorful-pastel-cartoon-gradient-background-image_584080.jpg");
+  background-size: cover;
+  overflow-y: hidden;
+}
+select {
+  width: 100px;
+  /* 원하는 너비설정 */
+  padding: 0.8em 0.5em;
+  /* 여백으로 높이 설정 */
+  font-family: inherit;
+  /* 폰트 상속 */
+  background: url("img/caret-down-outline.png") no-repeat 95% 50%;
+  /* 네이티브 화살표 대체 */
+  background-size: 20px;
+  border: 1px solid #999;
+  border-radius: 7px;
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  color: white;
+}
+
+input {
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: rgb(255, 255, 255);
+  /* 네이티브 화살표 대체 */
+  filter: grayscale(100%);
+  border: 1px solid black;
+  color: rgb(0, 0, 0);
+  border-radius: 7px;
+  padding: 0.8em 0.8em;
+  /* 여백으로 높이 설정 */
+}
+
+button {
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: rgba(0, 0, 0, 0);
+  /* 네이티브 화살표 대체 */
+  filter: grayscale(100%);
+  border: 1px solid black;
+  color: black;
+  border-radius: 7px;
+  padding: 0.5em 0.5em;
+  /* 여백으로 높이 설정 */
+}
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: smaller;
+  background-color: rgba(59, 130, 246, 0.01);
+  backdrop-filter: blur(15px);
+  height: 55px;
+  padding-left: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 2.25rem;
+  color: white;
+  font-weight: bold;
+  justify-content: space-between;
+  align-items: center;
+}
+#title {
+  padding-bottom: 0.25rem;
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#title {
+  color: black;
+}
+
+.display-container {
+  border-radius: 40px 40px 0px 0px;
+  flex: 12;
+  overflow-y: scroll;
+}
+.display-container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+.input-container {
+  flex: 1;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.input-container span {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.3rem;
+  width: 100%;
+}
+
+.chatting-input {
+  font-size: 12px;
+  height: 32px;
+  flex: 8;
+  border: none;
+  border-radius: 10px;
+}
+
+.chat-list {
+  padding-top: 87px;
+}
+
+.send-button {
+  background: url("../img/send.png");
+  margin: 0.3rem;
+  border: none;
+  background-size: cover;
+  height: 26px;
+  width: 26px;
+  border-radius: 10px;
+}
+
+.chat-list li {
+  width: 90%;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+.profile .user {
+  font-size: 8px;
+  text-overflow: ellipsis;
+  width: 3rem;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+  text-align: center;
+  font-weight: bold;
+}
+.profile .image {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+.message {
+  border: 1px black solid;
+  border-radius: 7px;
+  padding: 0.5rem;
+  font-size: 12px;
+  margin: 0 5px;
+}
+.time {
+  font-size: 10px;
+  margin: 0 5px;
+}
+
+.sent {
+  flex-direction: row-reverse;
+  float: right;
+}
