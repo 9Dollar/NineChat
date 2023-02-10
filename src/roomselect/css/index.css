@@ -9,14 +9,11 @@
 
 html,
 body {
+  max-width: 100%;
   height: 100%;
+  min-width: 100px;
 }
 
-body {
-  background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210313/pngtree-colorful-pastel-cartoon-gradient-background-image_584080.jpg");
-  background-size: cover;
-  overflow-y: hidden;
-}
 select {
   width: 100px;
   /* 원하는 너비설정 */
@@ -75,117 +72,32 @@ button {
   background-color: rgba(59, 130, 246, 0.01);
   backdrop-filter: blur(15px);
   height: 55px;
-  padding-left: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 2.25rem;
+  padding: 1rem;
   color: white;
   font-weight: bold;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 #title {
   padding-bottom: 0.25rem;
+  color: white;
 }
-.wrapper {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-#title {
-  color: black;
-}
-
 .display-container {
-  border-radius: 40px 40px 0px 0px;
-  flex: 12;
-  overflow-y: scroll;
-}
-.display-container::-webkit-scrollbar {
-  display: none;
-  width: 0;
-}
-.input-container {
-  flex: 1;
-  display: flex;
-  justify-content: stretch;
-  align-items: stretch;
-}
-
-.input-container span {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0.3rem;
-  width: 100%;
-}
-
-.chatting-input {
-  font-size: 12px;
-  height: 32px;
-  flex: 8;
-  border: none;
-  border-radius: 10px;
-}
-
-.chat-list {
-  padding-top: 87px;
-}
-
-.send-button {
-  background: url("../img/send.png");
-  margin: 0.3rem;
-  border: none;
+  padding: 8rem 4rem 50% 4rem;
+  background: linear-gradient(to bottom, #a18cd1, #fbc2eb);
+  background-repeat: no-repeat;
   background-size: cover;
-  height: 26px;
-  width: 26px;
-  border-radius: 10px;
 }
-
-.chat-list li {
-  width: 90%;
-  padding: 0.3rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-top: 0.5rem;
-}
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-}
-.profile .user {
-  font-size: 8px;
+.chat-room {
   text-overflow: ellipsis;
-  width: 3rem;
   overflow: hidden;
-  margin-bottom: 0.3rem;
+  border: white solid 1px;
   text-align: center;
-  font-weight: bold;
-}
-.profile .image {
-  border-radius: 50%;
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-}
-.message {
-  border: 1px black solid;
+  line-height: 90px;
+  background-color: white;
+  font-size: 24px;
   border-radius: 7px;
-  padding: 0.5rem;
-  font-size: 12px;
-  margin: 0 5px;
-}
-.time {
-  font-size: 10px;
-  margin: 0 5px;
-}
-
-.sent {
-  flex-direction: row-reverse;
-  float: right;
+  padding: 4rem;
+  margin: 3rem;
 }

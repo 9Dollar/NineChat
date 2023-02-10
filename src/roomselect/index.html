@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="./img/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>NineChat</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="header-bar">
+        <h1 id="title">NineChat</h1>
+        <button
+          id="header-buy"
+          style=""
+          onClick="location.href='../generation'"
+        >
+          방 생성
+        </button>
+      </div>
+      <div class="display-container">
+        <div class="chat-room">소통광장</div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="js/chat.js"></script>
