@@ -103,25 +103,26 @@ function LogToHtml(_roomName) {
 }
 
 function Logging(roomName, name, msg, time) {
-  const param = { name, msg, time };
-  if (room[roomName] == undefined) return;
-  room[roomName].push(param);
-  console.log(room);
-  fs.writeFileSync("./data/log.json", JSON.stringify(room, null, 2));
+  try {
+    const param = { name, msg, time };
+    if (room[roomName] == undefined) return;
+    room[roomName].push(param);
+    console.log(room);
+    fs.writeFileSync("./data/log.json", JSON.stringify(room, null, 2));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function CreateRoom(title) {
   if (room[title] != undefined) {
     return false;
   }
-  if (title.includes("/")) {
+  if (title.includes("/") || title.includes("%")) {
     return false;
   }
-  const roomForm = {
-    chat: [{ name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" }],
-  };
 
-  room[title] = roomForm;
+  room[title] = [{ name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" }];
   return true;
 }
 
