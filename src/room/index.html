@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header-bar">
+        <h1 id="title">NineChat</h1>
+        <button id="header-home" onClick="location.href='/'">홈으로</button>
+      </div>
+      <div class="display-container">
+        <div class="background">
+          <div class="title">방 생성</div>
+        </div>
+        <div class="code_background">
+          <div class="code">
+            방 제목
+            <input id="ipt_title" type="text" />
+            <button class="btn_create">생성</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      "use strict";
+      const socket = io();
+
+      const ipt_title = document.querySelector("#ipt_title");
+      const btn_create = document.querySelector(".btn_create");
+
+      btn_create.addEventListener("click", () => {
+        Create();
+      });
+
+      function Create() {
+        const title = ipt_title.value;
+        socket.emit("on_create", title);
+        socket.on("on_create", (ok) => {
+          if (ok == false) {
+            Swal.fire({
+              title: "오류!",
+              text: "이 채팅방 이름은 이미 사용중이거나 '/'가 들어가 있습니다",
+              icon: "error",
+            });
+          } else if (ok == true) {
+            Swal.fire({
+              heightAuto: false,
+              title: "성공!",
+              text: "방 생성에 성공했습니다!",
+              icon: "success",
+              confirmButtonText: "돌아가기",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.href = "/";
+              }
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

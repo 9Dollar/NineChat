@@ -11,16 +11,23 @@
     <div class="wrapper">
       <div class="header-bar">
         <h1 id="title">NineChat</h1>
-        <button
-          id="header-buy"
-          style=""
-          onClick="location.href='../generation'"
-        >
+        <button id="header-buy" style="" onClick="location.href='./room'">
           방 생성
         </button>
       </div>
       <div class="display-container">
-        <div class="chat-room">소통광장</div>
+        <div class="hr-sect">공용방</div>
+        <div class="chat-room" onclick="location.href = './chat/1'">
+          소통광장 Ch.1
+        </div>
+        <div class="chat-room" onclick="location.href = './chat/2'">
+          소통광장 Ch.2
+        </div>
+        <div class="chat-room" onclick="location.href = './chat/3'">
+          소통광장 Ch.3
+        </div>
+        <div class="hr-sect">사설방</div>
+        <div class="user-room"></div>
       </div>
     </div>
   </body>
@@ -29,4 +36,4 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="js/chat.js"></script>
+<script src="js/index.js"></script>

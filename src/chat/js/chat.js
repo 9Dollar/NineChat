@@ -2,24 +2,32 @@
 
 const socket = io();
 
+var roomName = decodeURI(location.href.split("chat/")[1].replace("/", ""));
+
 var nickname = "익명";
+var isFirst = true;
 const chatlist = document.querySelector(".chat-list");
 const chatInput = document.querySelector(".chatting-input");
 const sendButton = document.querySelector(".send-button");
 const displayContainer = document.querySelector(".display-container");
 
 Start();
-
 socket.on("on_chat", (data) => OnChat(data));
 socket.on("on_log", (html) => ReciveLog(html));
 socket.on("user_join", (id) => {
+  if (isFirst) {
+    socket.emit("user_join", roomName);
+    isFirst = false;
+    socket.emit("on_chat", { roomName: roomName, name: "", msg: "" });
+    return;
+  }
   if (id == socket.id) return;
-  socket.emit("on_chat", "", "");
 });
 
 function OnChat(data) {
+  console.log(data);
   const { name, msg, time } = data;
-  if (name == undefined && msg == undefined) {
+  if (name == "" && msg == "") {
     UserJoin();
     ScrollDownEnd();
     return;
@@ -40,6 +48,21 @@ function UserJoin() {
 }
 
 function ReciveLog(html) {
+  if (html == false) {
+    Swal.fire({
+      heightAuto: false,
+      icon: "error",
+      title: "삐삑!!",
+      text: "비정상적인 접근입니다!",
+      footer: "비정상적인 접근은 허용되지 않습니다",
+      confirmButtonText: "OK",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.href = "/";
+      }
+    });
+    return;
+  }
   chatlist.innerHTML = html;
   console.log(1);
 }
@@ -89,6 +112,7 @@ function ChangeName() {
 
 function Send() {
   const param = {
+    roomName: roomName,
     name: nickname,
     msg: chatInput.value,
   };
