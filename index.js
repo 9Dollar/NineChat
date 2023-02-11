@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
 function LogToHtml(_roomName) {
   var html = "";
   var _chatLog = room[_roomName];
-  if (_chatLog.length == undefined) {
+  if (_chatLog == undefined) {
     return false;
   }
   for (index = 0; index < _chatLog.length; index++) {
