@@ -1,5 +1,3 @@
-"use strict";
-
 const socket = io();
 
 var roomName = decodeURI(location.href.split("chat/")[1].replace("/", ""));
@@ -78,9 +76,16 @@ function AddTextModel(name, msg, time) {
   li.innerHTML = dom;
   chatlist.appendChild(li);
 }
+function detectBottom() {
+  return (
+    displayContainer.scrollHeight - displayContainer.scrollTop ===
+    displayContainer.clientHeight
+  );
+}
 
 function ScrollDownEnd() {
-  displayContainer.scrollTo(0, displayContainer.scrollHeight);
+  if (detectBottom())
+    displayContainer.scrollTo(0, displayContainer.scrollHeight);
 }
 
 function ChangeName() {
@@ -129,6 +134,13 @@ function Send() {
 
 function Start() {
   ChangeName();
+  with ((console && console._commandLineAPI) || {}) {
+    Object.defineProperty(console, "_commandLineAPI", {
+      get: function () {
+        throw "콘솔을 사용할 수 없습니다.";
+      },
+    });
+  }
 
   chatInput.addEventListener("keypress", (event) => {
     if (event.keyCode === 13) {

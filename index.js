@@ -66,6 +66,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "1gb", extended: false }));
 app.post("/upload", upload.single("chooseFile"), async (req, res) => {
   const imgfile = req.file;
+  if (imgfile == undefined) return;
   var name = req.body.name;
   var msg = `<img onclick="Swal.fire({
   imageUrl: this.src,

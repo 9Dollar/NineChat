@@ -12,7 +12,62 @@
   </head>
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <body>
+  <body
+    oncontextmenu="return false"
+    onselectstart="return false"
+    ondragstart="return false"
+  >
+    <script>
+      console = {};
+      console.log =
+        "금지된 접근입니다. 개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다.";
+      console.warn =
+        "금지된 접근입니다. 개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다.";
+      console.error =
+        "금지된 접근입니다. 개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다.";
+      Object.defineProperty(console, "_commandLineAPI", {
+        get: function () {
+          console.error(
+            "금지된 접근입니다. \n개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다."
+          );
+        },
+      });
+      !(function () {
+        function detectDevTool(allow) {
+          if (isNaN(+allow)) allow = 100;
+          var start = +new Date();
+          debugger;
+          var end = +new Date();
+          if (isNaN(start) || isNaN(end) || end - start > allow) {
+            alert(
+              "금지된 접근입니다. \n개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다."
+            );
+            location.href = "/";
+          }
+        }
+        if (window.attachEvent) {
+          if (
+            document.readyState === "complete" ||
+            document.readyState === "interactive"
+          ) {
+            detectDevTool();
+            window.attachEvent("onresize", detectDevTool);
+            window.attachEvent("onmousemove", detectDevTool);
+            window.attachEvent("onfocus", detectDevTool);
+            window.attachEvent("onblur", detectDevTool);
+          } else {
+            setTimeout(argument.callee, 0);
+          }
+        } else {
+          window.addEventListener("load", detectDevTool);
+          window.addEventListener("resize", detectDevTool);
+          window.addEventListener("mousemove", detectDevTool);
+          window.addEventListener("focus", detectDevTool);
+          window.addEventListener("blur", detectDevTool);
+        }
+      })();
+    </script>
+
     <div class="wrapper">
       <div class="header-bar">
         <h1 id="title">NineChat</h1>
