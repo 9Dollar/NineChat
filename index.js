@@ -1,4 +1,5 @@
 const express = require("express");
+var bodyParser = require("body-parser");
 const http = require("http");
 const app = express();
 const path = require("path");
@@ -7,6 +8,24 @@ const socketIO = require("socket.io");
 const moment = require("moment");
 const fs = require("fs");
 const { upload } = require("./lib/multer");
+var mongoose = require("mongoose");
+
+const uri = "mongodb://svc.sel3.cloudtype.app:32539/user";
+var db = mongoose.connect(uri, (err) => {
+  if (err) {
+    console.log(err.message);
+  } else {
+    console.log("Succesfully Connected!");
+  }
+});
+
+var UserSchema = new mongoose.Schema({
+  password: String, // 비밀번호
+  name: String, // 이름
+  id: String, // 아이디
+});
+
+var Users = mongoose.model("users", UserSchema);
 
 const io = socketIO(server);
 
@@ -43,13 +62,36 @@ var room = {
   ],
 };
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: "1gb", extended: false }));
 app.post("/upload", upload.single("chooseFile"), async (req, res) => {
   const imgfile = req.file;
   console.log(imgfile);
 });
-app.get("/image/:id", (req, res) => {
-  // 위에 있던 미들 웨어가 use로 사용되어서 res.send를 사용하면 요청을 두번 보내버리는 효과가 있어 오류가 난다.
+app.post("/signup", (req, res) => {
+  var new_user = new Users(req.body);
 
+  new_user.save((err) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "fail" });
+    } else return res.status(200).json({ message: "success", data: new_user });
+  });
+});
+
+app.post("/signin", (req, res) => {
+  Users.findOne(
+    { id: req.body.id, password: req.body.password },
+    (err, user) => {
+      if (err) return res.status(500).json({ message: "error" });
+      else if (user)
+        return res.status(200).json({ message: "success", data: user });
+      else return res.status(404).json({ message: "fail" });
+    }
+  );
+});
+
+app.get("/image/:id", (req, res) => {
   res.send(`<img src="../uploads/${req.params.id}" alt="My Image">`);
 });
 app.use("/cdn/:filename", express.static(path.join(__dirname, "/src/chat")));
