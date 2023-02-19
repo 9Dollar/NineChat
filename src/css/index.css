@@ -70,7 +70,7 @@ button {
   right: 0;
   font-size: smaller;
   background-color: rgba(59, 130, 246, 0.01);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(7px);
   height: 55px;
   padding: 1rem;
   color: white;
