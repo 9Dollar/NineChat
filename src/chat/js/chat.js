@@ -140,3 +140,54 @@ function Start() {
     Send();
   });
 }
+
+function loadFile(input) {
+  var file = input.files[0];
+
+  var newImage = document.createElement("img");
+  newImage.setAttribute("class", "img");
+
+  //이미지 source 가져오기
+  newImage.src = URL.createObjectURL(file);
+  console.log(newImage.src);
+
+  newImage.style.width = "70%";
+  newImage.style.height = "70%";
+  newImage.style.visibility = "hidden";
+  newImage.style.objectFit = "contain";
+  Swal.fire({
+    title: "이미지 미리보기",
+    text: "전송하실건가요?",
+    imageUrl: newImage.src,
+    imageWidth: 300,
+    imageAlt: "Custom image",
+    showCancelButton: true,
+    confirmButtonColor: "#3085D6",
+    cancelButtonColor: "#dd3333",
+    confirmButtonText: "전송",
+    cancelButtonText: "취소",
+    heightAuto: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      SendImage(file);
+    }
+  });
+}
+
+function SendImage(file) {
+  const formData = new FormData();
+  formData.append("chooseFile", file);
+  $.ajax({
+    type: "POST",
+    url: "/upload",
+    processData: false,
+    contentType: false,
+    data: formData,
+    success: function (rtn) {
+      console.log("rtn: ", rtn);
+    },
+    err: function (err) {
+      console.log("err:", err);
+    },
+  });
+}

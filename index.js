@@ -6,22 +6,56 @@ const server = http.createServer(app);
 const socketIO = require("socket.io");
 const moment = require("moment");
 const fs = require("fs");
+const { upload } = require("./lib/multer");
 
 const io = socketIO(server);
 
 var users = {};
 
 var room = {
-  "카드맆 즐겜러들 모임": [
-    { name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" },
+  "Genesis Room": [
+    {
+      name: "",
+      msg: "Welcome to the Genesis Room!",
+      time: moment(new Date()).format("HH:mm"),
+    },
   ],
-  1: [{ name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" }],
-  2: [{ name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" }],
-  3: [{ name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" }],
+  1: [
+    {
+      name: "",
+      msg: "즐거운 채팅 되십쇼!",
+      time: moment(new Date()).format("HH:mm"),
+    },
+  ],
+  2: [
+    {
+      name: "",
+      msg: "즐거운 채팅 되십쇼!",
+      time: moment(new Date()).format("HH:mm"),
+    },
+  ],
+  3: [
+    {
+      name: "",
+      msg: "즐거운 채팅 되십쇼!",
+      time: moment(new Date()).format("HH:mm"),
+    },
+  ],
 };
 
+app.post("/upload", upload.single("chooseFile"), async (req, res) => {
+  const imgfile = req.file;
+  console.log(imgfile);
+});
+app.get("/image/:id", (req, res) => {
+  // 위에 있던 미들 웨어가 use로 사용되어서 res.send를 사용하면 요청을 두번 보내버리는 효과가 있어 오류가 난다.
+
+  res.send(`<img src="../uploads/${req.params.id}" alt="My Image">`);
+});
+app.use("/cdn/:filename", express.static(path.join(__dirname, "/src/chat")));
 app.use("/chat/:roomName", express.static(path.join(__dirname, "/src/chat")));
 app.use("/", express.static(path.join(__dirname, "/src")));
+app.use("/node_modules", express.static(path.join(__dirname, "/node_modules")));
 app.use(function (req, res, next) {
   res.status(404);
   res.send(
@@ -118,11 +152,23 @@ function CreateRoom(title) {
   if (room[title] != undefined) {
     return false;
   }
-  if (title.includes("/") || title.includes("%")) {
+  if (
+    title.includes("/") ||
+    title.includes("%") ||
+    title.includes("<") ||
+    title.includes(">") ||
+    title == ""
+  ) {
     return false;
   }
 
-  room[title] = [{ name: "", msg: "즐거운 채팅 되십쇼!", time: "19:31" }];
+  room[title] = [
+    {
+      name: "",
+      msg: `Welcome to ${title}!`,
+      time: moment(new Date()).format("HH:mm"),
+    },
+  ];
   return true;
 }
 

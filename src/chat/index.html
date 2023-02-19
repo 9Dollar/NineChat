@@ -43,17 +43,31 @@
         </ul>
       </div>
       <div class="input-container">
+        <form
+          method="post"
+          action="http://localhost:8000/upload"
+          enctype="multipart/form-data"
+          style="width: 0px"
+          id="img_form"
+        >
+          <input
+            type="file"
+            id="chooseFile"
+            name="chooseFile"
+            accept="image/jpg, image/jpeg, image/png, image/gif"
+            onchange="loadFile(this)"
+          />
+        </form>
         <span>
+          <label for="chooseFile"> + </label>
           <input type="text" class="chatting-input" />
-          <script></script>
           <button class="send-button"></button>
         </span>
       </div>
     </div>
   </body>
 </html>
-
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script src="js/chat.js"></script>
