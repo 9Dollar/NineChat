@@ -177,6 +177,8 @@ function loadFile(input) {
 function SendImage(file) {
   const formData = new FormData();
   formData.append("chooseFile", file);
+  formData.append("roomName", roomName);
+  formData.append("name", nickname);
   $.ajax({
     type: "POST",
     url: "/upload",

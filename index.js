@@ -66,6 +66,29 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "1gb", extended: false }));
 app.post("/upload", upload.single("chooseFile"), async (req, res) => {
   const imgfile = req.file;
+  var name = req.body.name;
+  var msg = `<img onclick="Swal.fire({
+  imageUrl: this.src,
+  imageWidth: '100%',
+  showCancelButton: true,
+  confirmButtonColor: '#3085D6',
+  cancelButtonColor: '#dd3333',
+  confirmButtonText: '자세히 보기',
+  cancelButtonText: '취소',
+  heightAuto: false,
+}).then((result) => {
+  if (result.isConfirmed) {
+    location.href = this.src;
+  }
+});" id="chat-img" src="/uploads/${imgfile.filename}">`;
+  const param = {
+    name,
+    msg,
+    time: moment(new Date()).format("HH:mm"),
+  };
+  var roomName = req.body.roomName;
+  io.to(roomName).emit("on_chat", param);
+  Logging(roomName, name, msg, param.time);
   console.log(imgfile);
 });
 app.post("/signup", (req, res) => {
@@ -94,7 +117,6 @@ app.post("/signin", (req, res) => {
 app.get("/image/:id", (req, res) => {
   res.send(`<img src="../uploads/${req.params.id}" alt="My Image">`);
 });
-app.use("/cdn/:filename", express.static(path.join(__dirname, "/src/chat")));
 app.use("/chat/:roomName", express.static(path.join(__dirname, "/src/chat")));
 app.use("/", express.static(path.join(__dirname, "/src")));
 app.use("/node_modules", express.static(path.join(__dirname, "/node_modules")));

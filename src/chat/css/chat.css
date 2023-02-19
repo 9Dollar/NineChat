@@ -53,6 +53,21 @@ input {
   /* 여백으로 높이 설정 */
 }
 
+textarea {
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: rgb(255, 255, 255);
+  /* 네이티브 화살표 대체 */
+  filter: grayscale(100%);
+  border: 1px solid black;
+  color: rgb(0, 0, 0);
+  border-radius: 7px;
+  padding: 0.8em 0.8em;
+  /* 여백으로 높이 설정 */
+}
+
 button {
   -webkit-appearance: none;
   /* 네이티브 외형 감추기 */
@@ -175,7 +190,14 @@ button {
   width: 50px;
   height: 50px;
 }
+
+#chat-img {
+  width: 100%;
+  display: inline;
+}
 .message {
+  max-width: 30%;
+  word-break: break-all;
   border: 1px black solid;
   border-radius: 7px;
   padding: 0.5rem;
