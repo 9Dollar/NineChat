@@ -78,7 +78,7 @@
         SetActiveLoader(true);
         const title = ipt_title.value;
         $.post("/api/v1/chatlog", { roomName: title }, function (data) {
-          if (data == "true") {
+          if (data == "complete") {
             SetActiveLoader(false);
             Swal.fire({
               heightAuto: false,
