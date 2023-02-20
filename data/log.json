@@ -3,83 +3,43 @@
     {
       "name": "",
       "msg": "즐거운 채팅 되십쇼!",
-      "time": "18:22"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:23"
+      "time": "18:57"
     }
   ],
   "2": [
     {
       "name": "",
       "msg": "즐거운 채팅 되십쇼!",
-      "time": "18:22"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:23"
+      "time": "18:57"
     }
   ],
   "3": [
     {
       "name": "",
       "msg": "즐거운 채팅 되십쇼!",
-      "time": "18:22"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:23"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:23"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:23"
+      "time": "18:57"
     }
   ],
   "Genesis Room": [
     {
       "name": "",
       "msg": "Welcome to the Genesis Room!",
-      "time": "18:22"
+      "time": "18:57"
     },
     {
       "name": "",
       "msg": "",
-      "time": "18:23"
+      "time": "18:57"
     },
     {
       "name": "kkubul",
       "msg": "<img onclick=\"Swal.fire({\n  imageUrl: this.src,\n  imageWidth: '100%',\n  showCancelButton: true,\n  confirmButtonColor: '#3085D6',\n  cancelButtonColor: '#dd3333',\n  confirmButtonText: '자세히 보기',\n  cancelButtonText: '취소',\n  heightAuto: false,\n}).then((result) => {\n  if (result.isConfirmed) {\n    location.href = this.src;\n  }\n});\" id=\"chat-img\" src=\"/uploads/stone_base_texture.png\">",
-      "time": "18:23"
+      "time": "18:57"
     },
     {
-      "name": "",
-      "msg": "",
-      "time": "18:24"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:24"
-    },
-    {
-      "name": "",
-      "msg": "",
-      "time": "18:27"
-    },
-    {
-      "name": "kkubul123",
-      "msg": "음",
-      "time": "18:27"
+      "name": "kkubul",
+      "msg": "<img onclick=\"Swal.fire({\n  imageUrl: this.src,\n  imageWidth: '100%',\n  showCancelButton: true,\n  confirmButtonColor: '#3085D6',\n  cancelButtonColor: '#dd3333',\n  confirmButtonText: '자세히 보기',\n  cancelButtonText: '취소',\n  heightAuto: false,\n}).then((result) => {\n  if (result.isConfirmed) {\n    location.href = this.src;\n  }\n});\" id=\"chat-img\" src=\"/uploads/image (1).png\">",
+      "time": "18:57"
     }
   ]
 }

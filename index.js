@@ -80,7 +80,7 @@ app.post("/upload", upload.single("chooseFile"), async (req, res) => {
   if (result.isConfirmed) {
     location.href = this.src;
   }
-});" id="chat-img" onLoad={() => ScrollDownEnd()} src="/uploads/${imgfile.filename}">`;
+});" onLoad="ScrollDownEnd()" id="chat-img" src="/uploads/${imgfile.filename}">`;
   const param = {
     name,
     msg,
