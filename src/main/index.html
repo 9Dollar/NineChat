@@ -11,9 +11,6 @@
       function (data) {
         if (data != "complete") {
           location.href = "/login";
-        } else {
-          document.getElementById("account").innerText =
-            getCookie("id") + " 로그아웃";
         }
       }
     );
@@ -63,7 +60,7 @@
       <div class="header-bar">
         <h1 id="title">NineChat</h1>
         <span>
-          <a id="account" onclick="LogOut()">내 정보</a>
+          <a id="account" onclick="LogOut()">로그아웃</a>
           <button id="btn_create" style="" onClick="location.href='/room'">
             방 생성
           </button>
