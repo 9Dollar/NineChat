@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  if (getCookie("id") == false || getCookie("pass") == false) {
+    location.href = "/login";
+  } else {
+    $.post(
+      "/api/v1/login",
+      { id: getCookie("id"), password: getCookie("pass") },
+      function (data) {
+        if (data != "complete") {
+          location.href = "/login";
+        } else {
+          document.getElementById("account").innerText =
+            getCookie("id") + " 로그아웃";
+        }
+      }
+    );
+  }
+  function getCookie(cookieName) {
+    cookieName = cookieName + "=";
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = "";
+    if (start != -1) {
+      start += cookieName.length;
+      var end = cookieData.indexOf(";", start);
+      if (end == -1)
+        // 쿠키 값의 마지막 위치 인덱스 번호 설정
+        end = cookieData.length;
+      cookieValue = cookieData.substring(start, end);
+    } else {
+      return false;
+    }
+    return unescape(cookieValue);
+  }
+</script>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <link rel="shortcut icon" href="./img/icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="/public/css/loading.css" />
+    <title>NineChat</title>
+  </head>
+  <script src="/public/js/loader.js"></script>
+
+  <div class="loader-back" style="display: none">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
+  </div>
+
+  <body>
+    <div class="wrapper">
+      <div class="header-bar">
+        <h1 id="title">NineChat</h1>
+        <span>
+          <a id="account" onclick="LogOut()">내 정보</a>
+          <button id="btn_create" style="" onClick="location.href='/room'">
+            방 생성
+          </button>
+        </span>
+      </div>
+      <div class="display-container">
+        <div class="hr-sect">공용방</div>
+        <div class="chat-room" onclick="location.href = '/chat/1'">
+          소통광장 Ch.1
+        </div>
+        <div class="chat-room" onclick="location.href = '/chat/2'">
+          소통광장 Ch.2
+        </div>
+        <div class="chat-room" onclick="location.href = '/chat/3'">
+          소통광장 Ch.3
+        </div>
+        <div class="hr-sect">사설방</div>
+        <div class="user-room"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/index.js"></script>

@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<script>
+  if (getCookie("id") == false || getCookie("pass") == false) {
+    location.href = "/login";
+  }
+  function getCookie(cookieName) {
+    cookieName = cookieName + "=";
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = "";
+    if (start != -1) {
+      start += cookieName.length;
+      var end = cookieData.indexOf(";", start);
+      if (end == -1)
+        // 쿠키 값의 마지막 위치 인덱스 번호 설정
+        end = cookieData.length;
+      cookieValue = cookieData.substring(start, end);
+    } else {
+      return false;
+    }
+    return unescape(cookieValue);
+  }
+</script>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +30,17 @@
       name="viewport"
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
     />
+    <link rel="stylesheet" href="/public/css/loading.css" />
   </head>
+  <script src="/public/js/loader.js"></script>
+
+  <div class="loader-back" style="display: none">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
+  </div>
   <body>
     <div class="wrapper">
       <div class="header-bar">
@@ -42,16 +74,11 @@
       });
 
       function Create() {
+        SetActiveLoader(true);
         const title = ipt_title.value;
-        socket.emit("on_create", title);
-        socket.on("on_create", (ok) => {
-          if (ok == false) {
-            Swal.fire({
-              title: "오류!",
-              text: `이 채팅방 이름은 이미 사용중이거나\n허용되지 않는 문구가 포함되어 있습니다`,
-              icon: "error",
-            });
-          } else if (ok == true) {
+        $.post("/api/v1/chatlog", { roomName: title }, function (data) {
+          if (data == "true") {
+            SetActiveLoader(false);
             Swal.fire({
               heightAuto: false,
               title: "성공!",
@@ -62,6 +89,13 @@
               if (result.isConfirmed) {
                 location.href = "/";
               }
+            });
+          } else {
+            SetActiveLoader(false);
+            Swal.fire({
+              title: "오류!",
+              text: `이 채팅방 이름은 이미 사용중이거나\n허용되지 않는 문구가 포함되어 있습니다`,
+              icon: "error",
             });
           }
         });

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -9,69 +10,29 @@
       content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
     />
     <title>NineChat</title>
+    <link rel="stylesheet" href="/public/css/loading.css" />
   </head>
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="/public/js/loader.js"></script>
+
+  <div class="loader-back" style="display: none">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
+  </div>
   <body
     oncontextmenu="return false"
     onselectstart="return false"
     ondragstart="return false"
   >
-    <script>
-      console = {};
-      console.log =
-        "금지된 접근입니다. 개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다.";
-      console.warn =
-        "금지된 접근입니다. 개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다.";
-      console.error =
-        "금지된 접근입니다. 개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다.";
-      Object.defineProperty(console, "_commandLineAPI", {
-        get: function () {
-          console.error(
-            "금지된 접근입니다. \n개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다."
-          );
-        },
-      });
-      !(function () {
-        function detectDevTool(allow) {
-          if (isNaN(+allow)) allow = 100;
-          var start = +new Date();
-          debugger;
-          var end = +new Date();
-          if (isNaN(start) || isNaN(end) || end - start > allow) {
-            alert(
-              "금지된 접근입니다. \n개발자 도구를 활용하여 웹사이트 위변조를 시도할시 정보통신망법 제 48조 1항에 의해 처벌될 수 있습니다."
-            );
-            location.href = "/";
-          }
-        }
-        if (window.attachEvent) {
-          if (
-            document.readyState === "complete" ||
-            document.readyState === "interactive"
-          ) {
-            detectDevTool();
-            window.attachEvent("onresize", detectDevTool);
-            window.attachEvent("onmousemove", detectDevTool);
-            window.attachEvent("onfocus", detectDevTool);
-            window.attachEvent("onblur", detectDevTool);
-          } else {
-            setTimeout(argument.callee, 0);
-          }
-        } else {
-          window.addEventListener("load", detectDevTool);
-          window.addEventListener("resize", detectDevTool);
-          window.addEventListener("mousemove", detectDevTool);
-          window.addEventListener("focus", detectDevTool);
-          window.addEventListener("blur", detectDevTool);
-        }
-      })();
-    </script>
+    <script src="./js/prevent.js"></script>
 
     <div class="wrapper">
       <div class="header-bar">
         <h1 id="title">NineChat</h1>
-        <button onclick="ChangeName()">이름변경</button>
         <button onclick="location.href='/'">방 선택</button>
       </div>
       <div class="display-container">
@@ -127,6 +88,38 @@
     </div>
   </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+  if (getCookie("id") == false || getCookie("pass") == false) {
+    location.href = "/login";
+  } else {
+    $.post(
+      "/api/v1/login",
+      { id: getCookie("id"), password: getCookie("pass") },
+      function (data) {
+        if (data != "complete") {
+          location.href = "/login";
+        }
+      }
+    );
+  }
+  function getCookie(cookieName) {
+    cookieName = cookieName + "=";
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = "";
+    if (start != -1) {
+      start += cookieName.length;
+      var end = cookieData.indexOf(";", start);
+      if (end == -1)
+        // 쿠키 값의 마지막 위치 인덱스 번호 설정
+        end = cookieData.length;
+      cookieValue = cookieData.substring(start, end);
+    } else {
+      return false;
+    }
+    return unescape(cookieValue);
+  }
+</script>
 <script src="js/chat.js"></script>

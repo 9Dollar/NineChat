@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <link rel="stylesheet" href="/public/css/loading.css" />
+  </head>
+  <script src="/public/js/loader.js"></script>
+
+  <div class="loader-back" style="display: none">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
+  </div>
+  <body>
+    <div class="wrapper">
+      <div class="header-bar">
+        <h1 id="title">NineChat</h1>
+      </div>
+      <div class="display-container">
+        <div class="background">
+          <div class="title">로그인</div>
+        </div>
+        <div class="form_background">
+          <div class="form">
+            ID
+            <input id="ipt_id" type="text" />
+            PASSWORD
+            <input id="ipt_pass" type="text" />
+            <button class="btn_login" onclick="Login()">로그인</button>
+            <a class="register" href="/register">회원가입</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

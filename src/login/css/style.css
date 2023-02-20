@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom, #a18cd1, #fbc2eb);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+select {
+  width: 100px;
+  /* 원하는 너비설정 */
+  padding: 0.8em 0.5em;
+  /* 여백으로 높이 설정 */
+  font-family: inherit;
+  /* 폰트 상속 */
+  background: url("img/caret-down-outline.png") no-repeat 95% 50%;
+  /* 네이티브 화살표 대체 */
+  background-size: 20px;
+  border: 1px solid #999;
+  border-radius: 7px;
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  color: white;
+}
+
+input {
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: rgb(255, 255, 255);
+  /* 네이티브 화살표 대체 */
+  filter: grayscale(100%);
+  border: 1px solid black;
+  color: rgb(0, 0, 0);
+  border-radius: 7px;
+  padding: 0.8em 0.8em;
+  /* 여백으로 높이 설정 */
+}
+
+button {
+  -webkit-appearance: none;
+  /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+  background: rgba(0, 0, 0, 0);
+  /* 네이티브 화살표 대체 */
+  filter: grayscale(100%);
+  border: 1px solid black;
+  color: black;
+  border-radius: 7px;
+  padding: 0.5em 0.5em;
+  /* 여백으로 높이 설정 */
+}
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: smaller;
+  background-color: rgba(59, 130, 246, 0.01);
+  backdrop-filter: blur(15px);
+  height: 55px;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.display-container {
+  padding-top: 90px;
+  flex: 12;
+  overflow-y: scroll;
+}
+.display-container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+.form_background {
+  background-color: #24292f;
+  color: white;
+  margin: 5rem 40% 40% 40%;
+  border-radius: 15px;
+}
+
+@media (max-width: 1005px) {
+  .form_background {
+    background-color: #24292f;
+    color: white;
+    margin: 5rem 10% 10% 10%;
+    border-radius: 15px;
+  }
+}
+.register {
+  margin-top: 0.5rem;
+  color: white;
+}
+.form {
+  flex-direction: column;
+  font-size: 18px;
+  padding: 2rem;
+  flex: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.title {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 42px;
+}
+#title_code {
+  padding-top: 2rem;
+}
+#ipt_id {
+  margin-bottom: 2rem;
+}
+button.btn_login {
+  color: black;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  text-align: center;
+  width: 100px;
+  background: white;
+  font-size: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  margin-top: 2rem;
+  justify-content: flex-start;
+}
