@@ -28,6 +28,10 @@ function Register() {
           title: "성공!",
           text: "계정이 생성되었습니다",
           confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            location.href = "/main";
+          }
         });
       }
     }
