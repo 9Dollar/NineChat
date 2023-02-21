@@ -178,8 +178,11 @@ app.post("/api/v1/create", (req, res) => {
   res.send("complete");
 });
 
-app.use("/chat/:roomName", express.static(path.join(__dirname, "/src/chat")));
-app.use("/", express.static(path.join(__dirname, "/src")));
+app.use(
+  "/chat/:roomName",
+  express.static(path.join(__dirname, "/public/chat"))
+);
+app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/node_modules", express.static(path.join(__dirname, "/node_modules")));
 app.use(function (req, res, next) {
   res.status(404);
